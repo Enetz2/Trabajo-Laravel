@@ -25,6 +25,18 @@
         body{
             background-color: #F2CC67;
         }
+        th{
+            width: 100%;
+            text-align: center;
+            border:1px solid black;
+            background-color: #C86217;
+        }
+        td{
+            width: 100%;
+            text-align: center;
+            border:1px solid black;
+            background-color: white; 
+        }
     </style>
 </head>
 <body>

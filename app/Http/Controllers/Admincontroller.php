@@ -61,8 +61,15 @@ class AdminController extends Controller
      //Funcion para modificar el estado de la incidencia y enviar un correo
     public function añadirestado(Request $request,$id)
     {
+        $validardatos= $request->validate([
+            'Estado' => 'required | integer| between:0,3',
+         ] ,[
+             'required' => 'El campo :attribute es obligatorio.',
+             'integer' => 'El:attribute tiene que ser numerico',
+             'between' =>'El:attribute tiene que ser del 0 al 3',
+             ]);
         $datos= Incidencia::find($id);
-        $datos->estado=$request['Select'];
+        $datos->estado=$request['Estado'];
         $datos->update();
         return redirect("/correoestado/$id");
     }

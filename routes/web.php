@@ -22,18 +22,20 @@ Route::get('callback', 'Auth\LoginController@handleGoogleCallback');
 
 Auth::routes();
 
+
+
 //Rutas del profesor a las que el admin no puede entrar
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/nueva_incidencia',  function () {
         return view('nueva_incidencia');
     })->name('nueva_incidencia');
-    Route::post('/homeinci','HomeController@añadirincidencia');
+    Route::post('/homeinci','ProfeController@añadirincidencia');
     Route::get('/homeinci','EmailController@añadir');
     Route::get('/correomodifi/{id}','EmailController@modificacion');
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/edit/{id}', 'HomeController@editar');
-    Route::post('/edit/{id}', 'HomeController@upgrade');
-    Route::get('/eliminar/{id}', 'HomeController@eliminar');
+    Route::get('/home', 'ProfeController@index')->name('home');
+    Route::get('/edit/{id}', 'ProfeController@editar');
+    Route::post('/edit/{id}', 'ProfeController@upgrade');
+    Route::get('/eliminar/{id}', 'ProfeController@eliminar');
 });
 //Rutas del admin a las que el profesor no puede entrar
 Route::group(['middleware' => ['profe']], function () {

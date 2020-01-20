@@ -15,12 +15,17 @@
                     @endif
                     <form action="/estado/{{$datos[0]->id}}" method="POST">
                         @csrf
-                    <select name="Select">
-                        <option value="En proceso">En proceso</option>
-                        <option value="Detenido">Detenido</option>
-                        <option value="Finalizado">Finalizado</option>
-                        <option value="Revisando">Revisando</option>
+                    <select name="Estado">
+                        <option value="0">En proceso</option>
+                        <option value="1">Detenido</option>
+                        <option value="2">Finalizado</option>
+                        <option value="3">Revisando</option>
                       </select>
+                      @error('Estado')
+                        <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                        </span>
+                      @enderror
                       <input type="submit" value="Enviar">
                     </form>
                 </div>
