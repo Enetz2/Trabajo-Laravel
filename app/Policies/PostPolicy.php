@@ -29,8 +29,8 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function editar(Profesor $user, Incidencia $post)
-    {
+    public function editar(Profesor $user, Incidencia $post){
+    
        return $user->id == $post->id_profesor; 
 
     }

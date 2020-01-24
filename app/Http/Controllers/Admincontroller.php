@@ -68,8 +68,9 @@ class AdminController extends Controller
              'integer' => 'El:attribute tiene que ser numerico',
              'between' =>'El:attribute tiene que ser del 0 al 3',
              ]);
+        $lista=['En proceso','Detenido','Finalizado','Revisando'];
         $datos= Incidencia::find($id);
-        $datos->estado=$request['Estado'];
+        $datos->estado=$lista[$request['Estado']];
         $datos->update();
         return redirect("/correoestado/$id");
     }

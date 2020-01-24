@@ -34,10 +34,11 @@ class ProfeController extends Controller
       //Funcion para añadir una nueva incidencia a la base de datos
    
     public function añadirincidencia(Request $request){
+        
         $validardatos= $request->validate([
            'Equipo' => 'required | string | max:8 | min:8 | regex:/[HZ]\d{6}$/',
            'Clase' => 'required | integer|between:100,999',
-           'Descripcion' => 'required| max:1 | numeric',
+           'Descripcion' => 'required| numeric',
            
         ] ,[
             'required' => 'El campo :attribute es obligatorio.',
@@ -91,10 +92,12 @@ class ProfeController extends Controller
     }
      //Funcion para modificar los datos de la incidencia y enviar un correo
     public function upgrade(Request $request,$id){
+        $post = Incidencia::find($id);   
+        $this->authorize('editar', $post);
         $validardatos= $request->validate([
            'Equipo' => 'required | string | max:8 | min:8 | regex:/[HZ]\d{6}$/',
            'Clase' => 'required | integer|between:100,999',
-           'Descripcion' => 'required| max:1 | numeric',
+           'Descripcion' => 'required| numeric',
         ] ,[
             'required' => 'El campo :attribute es obligatorio.',
             'Clase.min' => 'La :attribute tiene que tener 3 numeros',
@@ -108,6 +111,7 @@ class ProfeController extends Controller
             'integer' => 'El:attribute tiene que ser numerico',
             'between' => 'El :attribute tiene que tener 3 numeros',
             ]);
+
         $lista=["No se enciende la CPU/ CPU ez da pizten","No se enciende la pantalla/Pantaila ez da pizten",
         "No entra en mi sesión/ ezin sartu nere erabiltzailearekin"
         ,"No navega en Internet/ Internet ez dabil"
@@ -117,6 +121,7 @@ class ProfeController extends Controller
         ,"No funciona el ratón/Xagua ez dabil"
         ,"Muy lento para entrar en la sesión/oso motel dijoa"
         ,"Otro"];
+
         if($lista[$request['Descripcion']]!=9){
             $otro="";
         }else{

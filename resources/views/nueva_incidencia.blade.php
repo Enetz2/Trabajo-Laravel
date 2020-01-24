@@ -30,7 +30,7 @@
             </span>
         @enderror
         <br><br>
-        Descripcion <select name="Descripcion" onchange="if(this.value=='Otro'){document.getElementById('otro').disabled = false} else {document.getElementById('otro').disabled = true}"><br><br>
+        Descripcion <select name="Descripcion" onchange="if(this.value=='9'){document.getElementById('otro').disabled = false} else {document.getElementById('otro').disabled = true}"><br><br>
             <option value="0">No se enciende la CPU/ CPU ez da pizten</option>
             <option value="1">No se enciende la pantalla/Pantaila ez da pizten</option>
             <option value="2">No entra en mi sesión/ ezin sartu nere erabiltzailearekin</option>
